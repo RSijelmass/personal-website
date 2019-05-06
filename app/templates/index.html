@@ -1,8 +1,50 @@
-<html>
-    <head>
-        <title>{{ title }} - Microblog</title>
-    </head>
-    <body>
-        <h1>Hello, {{ user.username }}!</h1>
-    </body>
-</html>
+{% extends "base.html" %}
+{% import 'bootstrap/wtf.html' as wtf %}
+
+
+{% block content %}
+    <!--introduction-->
+    <h1>Hi there! I'm Rita Sijelmass.</h1>
+    <h3>...A little blurb about me...</h3>
+
+    <!--contact buttons-->
+    <a href="https://linkedin.com/in/rita-sijelmass">
+      <img src="../../images/linkedin_logo.jpg"
+      width="82" height="86" title="LinkedIn"alt="linkedin">
+    </a>
+    <a href="https://github.com/RSijelmass">
+      <img src="../../images/github_logo.jpg"
+      width="82" height="86" title="Github"alt="github">
+    </a>
+    <!--
+    <a href="">
+      <img src="../../images/linkedin_logo.jpg"
+      width="82" height="86" title="LinkedIn"alt="linkedin">
+    </a>-->
+    
+
+    <h4>You want to get in touch?</h4>
+    <form action="" method="post">
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.name.label }}
+            {{ form.name(cols=32, rows=1) }}<br>
+            {% for error in form.name.errors %}
+              <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+            {{ form.email.label }}
+            {{ form.email(cols=32, rows=1) }}<br>
+            {% for error in form.email.errors %}
+              <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+            {{ form.phone.label }}
+            {{ form.phone(cols=32, rows=1) }}<br>
+            {{ form.reason.label }}
+            {{ form.reason(cols=32, rows=4) }}<br>
+            {% for error in form.reason.errors %}
+              <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>{{ form.submit() }}</p>
+    </form>
+{% endblock %}
